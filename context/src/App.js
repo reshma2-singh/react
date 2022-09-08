@@ -1,25 +1,28 @@
-import  React from "react"
-import './App.css';
-import UserProvider from "./components/ContextWrapper/UserProvider";
-import ParentA from "./components/ParentA";
+import React, { createContext, useState } from "react";
+import ChildD from './components/ChildD'
+export const FirstName = createContext();
 
-class App extends React.Component{
-  constructor(props){
-    super(props)
-    this.state={
-   
-    }
+function App() {
+  const [user, setUser] = useState({
+    name: "cat",
+    age: 15,
+    address: "some",
+  });
+  const [color, setColor] = useState("green")
+  function handleChange(obj) {
+    setUser(obj)
   }
-
-  render(){
-    return(
-      <div>
-        <UserProvider>
-        <ParentA />
-        </UserProvider>
-      </div>
-    )
+  function handleClick(val) {
+    setColor(val)
   }
+  return (
+    <div className="App">
+      <FirstName.Provider value={[user, (obj) => handleChange(obj), { color }, (val) => handleClick(val)]}>
 
+        <ChildD />
+
+      </FirstName.Provider>
+    </div>
+  )
 }
 export default App;

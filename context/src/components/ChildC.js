@@ -1,21 +1,16 @@
-import  React from "react"
+import React,{useContext} from "react";
+import {FirstName} from "../App";
 import ChildD from "./ChildD";
-
-
-class ChildC extends React.Component{
-  constructor(props){
-    super(props)
-    this.state={
-   
-    }
+function ChildC() {
+   const {appColor} = useContext(FirstName);
+ 
+  
+    return (
+      <>
+       
+      <h1 style={{color:appColor}}>child</h1>
+        <ChildD/>
+      </>
+    );
   }
-  render(){
-    return(
-      <div>
-        <ChildD peter={this.props.peter} alterPeter={this.props.alterPeter}/>
-      </div>
-    )
-  }
-
-}
-export default ChildC;
+  export default ChildC
