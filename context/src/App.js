@@ -1,28 +1,24 @@
-import React, { createContext, useState } from "react";
-import ChildD from './components/ChildD'
-export const FirstName = createContext();
-
+import React from 'react'
+import './App.css'
+import Thali from './ReduxComponents/Thali'
+import Header from './ReduxComponents/Header'
+import Footer from './ReduxComponents/Footer'
+import Checkout from './ReduxComponents/Checkout'
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
 function App() {
-  const [user, setUser] = useState({
-    name: "cat",
-    age: 15,
-    address: "some",
-  });
-  const [color, setColor] = useState("green")
-  function handleChange(obj) {
-    setUser(obj)
-  }
-  function handleClick(val) {
-    setColor(val)
-  }
   return (
-    <div className="App">
-      <FirstName.Provider value={[user, (obj) => handleChange(obj), { color }, (val) => handleClick(val)]}>
-
-        <ChildD />
-
-      </FirstName.Provider>
+    <div>
+     <BrowserRouter>
+     <Header/>
+      <Routes>
+        <Route exact path='/' element={<Thali/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
+       
+      </Routes>
+      <Footer/>
+      </BrowserRouter>
     </div>
   )
 }
-export default App;
+
+export default App
